@@ -8,25 +8,26 @@
 import SwiftUI
 
 //PART 1A: Uncomment the section below
-/*
+
 class Coffee: ObservableObject, Identifiable {
     var itemNum: Int
     
     var drinkName: String
         
-    var drinkType: [INSERT DATA TYPE]
+    var drinkType: String
     
-    var price: [INSERT DATA TYPE]
+    var price: Float
     
-    [INSERT PROPERTY WRAPPER] var quantity: [INSERT DATA TYPE]
+    @State var quantity: Int
     
     //Complete the class constructor
     init(itemNum: Int, drinkName: String) {
         self.itemNum = itemNum
         self.drinkname = drinkName
+        self.drinkType = 
     }
 }
-*/
+
 
 struct ContentView: View {
     //PART 1B: Initialize objects of the Coffee class aka "menu items" below
