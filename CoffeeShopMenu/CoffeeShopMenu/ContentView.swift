@@ -33,16 +33,16 @@ class Coffee: ObservableObject, Identifiable {
 
 struct ContentView: View {
     //PART 1B: Initialize objects of the Coffee class aka "menu items" below
-   @StateObject var latte = Coffee(itemNum: 1, drinkName: "I Love You a Latte", drinkType: "Latte", price: 3.75, quantity: 0)
-   @StateObject var espresso = Coffee(itemNum: 2, drinkName: "Not Espresso Depresso", drinkType: "Espresso", price: 3.25, quantity: 0)
-   @StateObject var mocha = Coffee(itemNum: 3, drinkName: "Loca for Mocha", drinkType: "Mocha", price: 4.00, quantity: 0)
-   @StateObject var coldBrew = Coffee(itemNum: 4, drinkName: "Brew-tiful Day", drinkType: "Cold Brew", price: 3.00, quantity: 0)
+    @StateObject var latte = Coffee(itemNum: 1, drinkName: "I Love You a Latte", drinkType: "Latte", price: 3.75, quantity: 0)
+    @StateObject var espresso = Coffee(itemNum: 2, drinkName: "Not Espresso Depresso", drinkType: "Espresso", price: 3.25, quantity: 0)
+    @StateObject var mocha = Coffee(itemNum: 3, drinkName: "Loca for Mocha", drinkType: "Mocha", price: 4.00, quantity: 0)
+    @StateObject var coldBrew = Coffee(itemNum: 4, drinkName: "Brew-tiful Day", drinkType: "Cold Brew", price: 3.00, quantity: 0)
     
     //PART 4A - Instantiate variables that will help us calculate and display the total price
     
     @State private var totalPrice = 0.0
-   @State private var currentPrice = 0.0
-    @State private var showPrice = true
+    @State private var currentPrice = 0.0
+    @State private var showPrice = false
     
     //PART 2A  - Uncomment the section below
     
@@ -97,8 +97,9 @@ struct ContentView: View {
                         
                         Button("-", action: {
                             if (i.quantity > 0) {
-                                i.quantity -=  1
-                                //3C: Add a line of code to update the totalPrice variable below
+                               showPrice = false
+                               i.quantity -=  1
+                               //3C: Add a line of code to update the totalPrice variable below
                                totalPrice += Double(i.quantity) * i.price
                                
                             }
@@ -115,7 +116,8 @@ struct ContentView: View {
                         //PART 3A: IMPLEMENT YOUR INCREMENT BUTTON IN THE SPACE BELOW
                        Button("+", action: {
                            if (i.quantity > 0) {
-                               i.quantity +=  1
+                              showPrice = false
+                              i.quantity +=  1
                               totalPrice += Double(i.quantity) * i.price
                               
                            }
