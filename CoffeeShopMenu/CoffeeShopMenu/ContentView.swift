@@ -43,16 +43,16 @@ struct ContentView: View {
     [INSERT PROPERTY WRAPPER] private var totalPrice = [INSERT DATA]
     [INSERT PROPERTY WRAPPER] private var currentPrice = [INSERT DATA]
     [INSERT PROPERTY WRAPPER] private var showPrice = [INSERT DATA]
-
+    */
     //PART 2A  - Uncomment the section below
-    /*
+    
     @State private var coffeeList: [Coffee] = []
     
     //Helpter Function to be called when body is run that will add objects to coffeeList
     func addListItems() {
-        coffeeList = [] //Add your objects to your list here!
+        coffeeList = [latte, espresso, mocha, coldBrew] //Add your objects to your list here!
     }
-    */
+    
     
     // PART 3D: Helper function that updates currentPrice
     /*
@@ -64,31 +64,33 @@ struct ContentView: View {
     var body: some View {
         VStack {
             //PART 2C: EDIT THE TITLE AND ADD A SUBTITLE BELOW
-            Text("Your Coffee Shop Name")
+           Text("Millennial Coffee Puns").bold()
             
             VStack {
                 //PART 2C: ADD SOME MENU HEADERS IN THE HSTACK BELOW
                  HStack {
-                     
-                 }.padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 70))
+                    Text("Drink Name: ").padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    Text("Quantity: ").padding(EdgeInsets(top: 0, leading: 100, bottom: 0, trailing: 0))
+                 }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                      .bold()
+               //Spacer()
                 
                 //PART2B: DISPLAYING OUR MENU ITEMS
-                /*
+                
                 ForEach(coffeeList) {i in
                     HStack {
                         VStack(alignment: .leading) {
                   
                             //Formats the price to a double containing 2 digits after the decimal point
-                            var formattedPrice = String(format: "%.2f", [INSERT PRICE])
+                           var formattedPrice = String(format: "%.2f", i.price)
                             
                             //Display itemNum and drinkName
-                            Text(String([INSERT ITEMNUM]) + ". " + [INSERT DRINK NAME])
+                           Text(String(i.itemNum) + ". " + i.drinkName)
                             
                             //Display drinkType and
-                            Text("    " + [INSERT DRINK TYPE] + ", $" + formattedPrice).italic()
+                           Text("    " + i.drinkType + ", $" + formattedPrice).italic()
                         } .padding(.bottom, 10)
-                 */
+                 
                         Spacer()
                 
                         
@@ -141,7 +143,7 @@ struct ContentView: View {
             Spacer()
             
         }.padding(.top, 55)
-            //.onAppear(perform: addListItems)
+            .onAppear(perform: addListItems)
     }
 }
 
