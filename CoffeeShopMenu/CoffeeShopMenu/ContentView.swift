@@ -16,12 +16,12 @@ class Coffee: ObservableObject, Identifiable {
         
     var drinkType: String
     
-    var price: Float
+    var price: Double
     
     @State var quantity: Int
     
     //Complete the class constructor
-   init(itemNum: Int, drinkName: String, drinkType: String, price: Float, quantity: Int) {
+   init(itemNum: Int, drinkName: String, drinkType: String, price: Double, quantity: Int) {
       self.itemNum = itemNum
       self.drinkName = drinkName
       self.drinkType = drinkType
@@ -33,17 +33,17 @@ class Coffee: ObservableObject, Identifiable {
 
 struct ContentView: View {
     //PART 1B: Initialize objects of the Coffee class aka "menu items" below
-   @StateObject var latte = Coffee(itemNum: 1, drinkName: "I love you a latte", drinkType: "Latte", price: 3.75, quantity: 0)
+   @StateObject var latte = Coffee(itemNum: 1, drinkName: "I Love You a Latte", drinkType: "Latte", price: 3.75, quantity: 0)
    @StateObject var espresso = Coffee(itemNum: 2, drinkName: "Not Espresso Depresso", drinkType: "Espresso", price: 3.25, quantity: 0)
    @StateObject var mocha = Coffee(itemNum: 3, drinkName: "Loca for Mocha", drinkType: "Mocha", price: 4.00, quantity: 0)
    @StateObject var coldBrew = Coffee(itemNum: 4, drinkName: "Brew-tiful Day", drinkType: "Cold Brew", price: 3.00, quantity: 0)
     
     //PART 4A - Instantiate variables that will help us calculate and display the total price
-    /*
-    [INSERT PROPERTY WRAPPER] private var totalPrice = [INSERT DATA]
-    [INSERT PROPERTY WRAPPER] private var currentPrice = [INSERT DATA]
-    [INSERT PROPERTY WRAPPER] private var showPrice = [INSERT DATA]
-    */
+    
+    @State private var totalPrice = 0.0
+   @State private var currentPrice = 0.0
+    @State private var showPrice = true
+    
     //PART 2A  - Uncomment the section below
     
     @State private var coffeeList: [Coffee] = []
@@ -55,11 +55,10 @@ struct ContentView: View {
     
     
     // PART 3D: Helper function that updates currentPrice
-    /*
     func updateCurrentPrice() {
         currentPrice = totalPrice
     }
-     */
+   
     
     var body: some View {
         VStack {
@@ -95,14 +94,16 @@ struct ContentView: View {
                 
                         
                         //PART 3A: Decrement Buttom - Uncomment the section below
-                        /*
+                        
                         Button("-", action: {
                             if (i.quantity > 0) {
                                 i.quantity -=  1
                                 //3C: Add a line of code to update the totalPrice variable below
+                               totalPrice += Double(i.quantity) * i.price
+                               
                             }
                         }).padding(.bottom, 20)
-                         */
+                         
                         
                         //PART 2B: Display the quantity of each item
                         
@@ -112,16 +113,22 @@ struct ContentView: View {
                         
                 
                         //PART 3A: IMPLEMENT YOUR INCREMENT BUTTON IN THE SPACE BELOW
-
+                       Button("+", action: {
+                           if (i.quantity > 0) {
+                               i.quantity +=  1
+                              totalPrice += Double(i.quantity) * i.price
+                              
+                           }
+                       }).padding(.bottom, 20)
                 
                     }.padding(EdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 70))
                 }.padding(.bottom, 15)
                 
                 //PART 3D - Implement totalPrice displaying button, Uncomment the section below
-                /*
                 VStack {
                     Button("Calculate Total Price", action: {
                         //IMPLEMENT THE FUNCTIONALITY OF THE BUTTON NELOW
+                       showPrice = true
                         
                     }).buttonStyle(.automatic)
                         .font(.system(size: 20))
@@ -133,10 +140,10 @@ struct ContentView: View {
                     
                     if showPrice {
                         //UPDATE THE EMPTY TEXT TO DISPLAY THE TOTAL PRICE WHEN SHOWPRICE IS TRUE
-                        Text()
+                        Text(String(totalPrice))
                     }
                 }.padding(.top, 30)
-                 */
+                 
                 
             }
             
