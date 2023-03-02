@@ -21,10 +21,12 @@ class Coffee: ObservableObject, Identifiable {
     @State var quantity: Int
     
     //Complete the class constructor
-   init(itemNum: Int, drinkName: String, String: drinkType, Float: ) {
-        self.itemNum = itemNum
-        self.drinkname = drinkName
-        self.drinkType = drinkType
+   init(itemNum: Int, drinkName: String, String: drinkType, Float: price, Int: quantity ) {
+      self.itemNum = itemNum
+      self.drinkname = drinkName
+      self.drinkType = drinkType
+      self.price = price
+      self.quantity = 0
     }
 }
 
