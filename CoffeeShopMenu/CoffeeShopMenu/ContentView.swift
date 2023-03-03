@@ -40,8 +40,8 @@ struct ContentView: View {
     
     //PART 4A - Instantiate variables that will help us calculate and display the total price
     
-    @State private var totalPrice = 0.0
-    @State private var currentPrice = 0.0
+    @State private var totalPrice = 0.00
+    @State private var currentPrice = 0.00
     @State private var showPrice = false
     
     //PART 2A  - Uncomment the section below
@@ -63,9 +63,12 @@ struct ContentView: View {
     var body: some View {
         VStack {
             //PART 2C: EDIT THE TITLE AND ADD A SUBTITLE BELOW
-           Text("\u{2665}" + "MILLENNIAL COFFEE PUNS " + "\u{2665}"  ).font(.system(size: 40, weight: .bold, design: .serif))
+           Text("\u{2665}" + "MILLENNIAL COFFEE PUNS " + "\u{2665}"  ).font(.system(size: 25, weight: .bold, design: .serif))
               .italic().multilineTextAlignment(.center).background(Color.brown)
-           Spacer().frame(height: 30)
+           Text("Outdated Humor").font(.system(size: 15, weight: .bold, design: .serif))
+              .italic().multilineTextAlignment(.center)
+           Spacer().frame(height: 10)
+           
             
             VStack {
                 //PART 2C: ADD SOME MENU HEADERS IN THE HSTACK BELOW
@@ -74,7 +77,7 @@ struct ContentView: View {
                     Text("Quantity: ").padding(EdgeInsets(top: 0, leading: 100, bottom: 0, trailing: 0))
                  }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                      .bold()
-               Spacer().frame(height: 30)
+               Spacer().frame(height: 10)
                 
                 //PART2B: DISPLAYING OUR MENU ITEMS
                 
@@ -102,7 +105,7 @@ struct ContentView: View {
                                showPrice = false
                                i.quantity -=  1
                                //3C: Add a line of code to update the totalPrice variable below
-                               totalPrice += Double(i.quantity) * i.price
+                               totalPrice -= i.price
                                
                             }
                         }).padding(.bottom, 20)
@@ -120,7 +123,7 @@ struct ContentView: View {
                            if (i.quantity >= 0) {
                               showPrice = false
                               i.quantity +=  1
-                              totalPrice += Double(i.quantity) * i.price
+                              totalPrice += i.price
                               
                            }
                        }).padding(.bottom, 20)
@@ -156,6 +159,7 @@ struct ContentView: View {
             
         }.padding(.top, 55)
             .onAppear(perform: addListItems)
+       Image("Harold").resizable()
     }
 }
 
