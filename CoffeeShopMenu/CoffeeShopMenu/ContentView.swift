@@ -18,7 +18,7 @@ class Coffee: ObservableObject, Identifiable {
     
     var price: Double
     
-    @State var quantity: Int
+    @Published var quantity: Int
     
     //Complete the class constructor
    init(itemNum: Int, drinkName: String, drinkType: String, price: Double, quantity: Int) {
@@ -63,7 +63,9 @@ struct ContentView: View {
     var body: some View {
         VStack {
             //PART 2C: EDIT THE TITLE AND ADD A SUBTITLE BELOW
-           Text("Millennial Coffee Puns").bold()
+           Text("\u{2665}" + "MILLENNIAL COFFEE PUNS " + "\u{2665}"  ).font(.system(size: 40, weight: .bold, design: .serif))
+              .italic().multilineTextAlignment(.center).background(Color.brown)
+           Spacer().frame(height: 30)
             
             VStack {
                 //PART 2C: ADD SOME MENU HEADERS IN THE HSTACK BELOW
@@ -72,7 +74,7 @@ struct ContentView: View {
                     Text("Quantity: ").padding(EdgeInsets(top: 0, leading: 100, bottom: 0, trailing: 0))
                  }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                      .bold()
-               //Spacer()
+               Spacer().frame(height: 30)
                 
                 //PART2B: DISPLAYING OUR MENU ITEMS
                 
@@ -96,7 +98,7 @@ struct ContentView: View {
                         //PART 3A: Decrement Buttom - Uncomment the section below
                         
                         Button("-", action: {
-                            if (i.quantity > 0) {
+                            if (i.quantity >= 0) {
                                showPrice = false
                                i.quantity -=  1
                                //3C: Add a line of code to update the totalPrice variable below
@@ -115,7 +117,7 @@ struct ContentView: View {
                 
                         //PART 3A: IMPLEMENT YOUR INCREMENT BUTTON IN THE SPACE BELOW
                        Button("+", action: {
-                           if (i.quantity > 0) {
+                           if (i.quantity >= 0) {
                               showPrice = false
                               i.quantity +=  1
                               totalPrice += Double(i.quantity) * i.price
@@ -142,7 +144,7 @@ struct ContentView: View {
                     
                     if showPrice {
                         //UPDATE THE EMPTY TEXT TO DISPLAY THE TOTAL PRICE WHEN SHOWPRICE IS TRUE
-                        Text(String(totalPrice))
+                        Text("$" + String(totalPrice))
                     }
                 }.padding(.top, 30)
                  
@@ -150,6 +152,7 @@ struct ContentView: View {
             }
             
             Spacer()
+           
             
         }.padding(.top, 55)
             .onAppear(perform: addListItems)
