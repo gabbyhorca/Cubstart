@@ -6,11 +6,6 @@
 
 import SwiftUI
 
-/* Just for placeholder data type. Not useful. */
-enum DummyDataType {
-   case dummy
-}
-
 struct ContentView: View {
    // The navigationStack control point. If appended to, it will navigate the user to a new view.
    @State var navPath = NavigationPath()
@@ -43,7 +38,7 @@ struct ContentView: View {
          // TODO: Replace DummyDataType with correct data type.
          .navigationDestination(for: String.self) { action in
             // TODO: Replace EmptyView() with code to display correct view based on action pushed onto the navigation stack.
-            if (solutionPathString == currentPathString) {
+            if (solutionPath == currentPath) {
                MazeExitView(navPath: $navPath, currentPath: $currentPath, solutionPath: $solutionPath, solutionPathString: $solutionPathString, currentPathString: $currentPathString)
             } else {
                MazeLocationView(previous_action: action, navPath: $navPath, currentPath: $currentPath, solutionPath: $solutionPath, solutionPathString: $solutionPathString, currentPathString: $currentPathString)
@@ -52,7 +47,7 @@ struct ContentView: View {
       }
       .onAppear {
          // TODO: Uncomment after initializing solutionPath
-         // solutionPathString = solutionPath.joined(separator: "->")
+         solutionPathString = solutionPath.joined(separator: "->")
       }
    }
 }

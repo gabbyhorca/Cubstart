@@ -43,9 +43,9 @@ struct MazeLocationView: View {
          Text("Pick your next move with caution.")
             .padding()
          // TODO: Explore Up Button + actions
-         Button("Up") {
+         Button("↑Up↑") {
             backtrack = true
-            currentPath.append("↑Up↑")
+            currentPath.append("Up")
             navPath.append("Up")
          }
          .padding()
