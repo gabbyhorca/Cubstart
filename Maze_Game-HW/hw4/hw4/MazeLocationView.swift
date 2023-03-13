@@ -51,11 +51,28 @@ struct MazeLocationView: View {
          .padding()
          HStack {
             // TODO: Explore Left Button
-            
+            Button("Left") {
+               backtrack = true
+               currentPath.append("Left")
+               navPath.append("Left")
+            }
+            .padding(.trailing, 30)
             // TODO: Explore Right Button
+            Button("Right") {
+               backtrack = true
+               currentPath.append("Right")
+               navPath.append("Right")
+            }
+            .padding(.leading, 30)
          }
          
          // TODO: Explore Down Button
+         Button("Down") {
+            backtrack = true
+            currentPath.append("Down")
+            navPath.append("Down")
+         }
+         .padding()
          
          Spacer()
          Spacer()
