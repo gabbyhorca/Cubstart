@@ -45,20 +45,20 @@ struct MazeLocationView: View {
          // TODO: Explore Up Button + actions
          Button("Up") {
             backtrack = true
-            currentPath.append("Up")
+            currentPath.append("↑Up↑")
             navPath.append("Up")
          }
          .padding()
          HStack {
             // TODO: Explore Left Button
-            Button("Left") {
+            Button("←Left") {
                backtrack = true
                currentPath.append("Left")
                navPath.append("Left")
             }
             .padding(.trailing, 30)
             // TODO: Explore Right Button
-            Button("Right") {
+            Button("Right→") {
                backtrack = true
                currentPath.append("Right")
                navPath.append("Right")
@@ -67,7 +67,7 @@ struct MazeLocationView: View {
          }
          
          // TODO: Explore Down Button
-         Button("Down") {
+         Button("↓Down↓") {
             backtrack = true
             currentPath.append("Down")
             navPath.append("Down")
@@ -82,7 +82,10 @@ struct MazeLocationView: View {
       }
       .onAppear {
          // TODO: Implement Backtracking
-         
+         if backtrack {
+            _ = currentPath.popLast()
+            backtrack = false
+         }
          // Refresh the currentPathString variable to reflect new current path whether visiting or backtracking.
          currentPathString = currentPath.joined(separator: "->")
       }
