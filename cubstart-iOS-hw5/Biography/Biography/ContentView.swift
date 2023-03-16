@@ -20,6 +20,24 @@ struct ContentView: View {
           Spacer()
        }
         //PART1B - Add your form containing your buttons
+       Form {
+           Button("Quick facts") {
+
+               }
+               .padding()
+          Button("Fav football team") {
+
+              }
+              .padding()
+          Button("Kissing or Fighting?") {
+
+              }
+              .padding()
+          Button("Obedience") {
+
+              }
+              .padding()
+       }
         
     }
 }
@@ -32,7 +50,10 @@ struct Sheet1: View {
     var body: some View {
         //Add some content to the body of your sheet!
         //Remember to include a button that just calls dismiss() in the action
-        Text("This is sheet one")
+        Text("Riley Breed: Golden Doodle")
+       Text("Riley Birthday: November 4")
+       Text("Rigby Breed: Aussie Doodle")
+       Text("Rigby Birthday: March ")
     }
 
 }
