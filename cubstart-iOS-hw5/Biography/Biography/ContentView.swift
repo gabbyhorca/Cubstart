@@ -12,8 +12,12 @@ struct ContentView: View {
     
     var body: some View {
         //PART1A - Design your header
-        Text("Hello world!")
-        
+       VStack {
+          Text("Meet the dogs:")
+          Text("RILEY & RIGBY").font(.system(size: 35, weight: .bold, design: .serif))
+             .italic().multilineTextAlignment(.center).font(.largeTitle)
+          Image("IMG_8073").resizable().scaledToFit().cornerRadius(50).frame(width: 200.0, height: 200.0)
+       }
         //PART1B - Add your form containing your buttons
         
     }
