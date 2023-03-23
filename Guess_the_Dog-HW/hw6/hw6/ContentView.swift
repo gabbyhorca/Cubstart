@@ -28,17 +28,18 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             // TODO: Part 1a - Linear Gradient Background.
-            
+           LinearGradient(gradient: Gradient(colors: [lightBlue, lavender]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             // VStack in foreground
             VStack {
                 // TODO: Part 1b - Title.
-                
+               Text("Guess the 🐶!").font(.largeTitle).padding()
                 HStack {
                     // TODO: Part 1b - Streak Text.
-                    
+                   Text("Streak: ").foregroundColor(Color.white)
                     Spacer()
                     
                     // TODO: Part 1b - Best Streak Text.
+                   Text("Best Streak: ").foregroundColor(Color.white)
                 }
                 .padding(.horizontal, 40)
                 .padding(.bottom, 60)
@@ -79,6 +80,8 @@ struct ContentView: View {
                     }
                 
                 // TODO: Part 1b - Submit Guess Button.
+               Button("Submit Guess") {
+               }.padding()
                 // TODO: Part 3b - Guess submission logic in Button. Hint: Should be exact same as TextField.onSubmit{ }.
                 // TODO: Part 3c - Incorrect guess alert (attached to submit guess button).
                 
