@@ -60,6 +60,7 @@ struct ContentView: View {
                 .frame(width: 256, height: 256)
                 
                 // TODO: PART 1b - Display the generated hint.
+               Text(generateHint(input:getDogName(imageURL: "https://images.dog.ceo/breeds/papillon/n02086910_2909.jpg"))).padding()
                 
                 TextField("", text: $user_guess)
                     .disableAutocorrection(true)
@@ -72,6 +73,7 @@ struct ContentView: View {
                             
                             Task {
                                 // Hint: You should be fetching a new doggy here!
+                               
                             }
                         } else {
                             
