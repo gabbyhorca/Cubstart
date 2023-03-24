@@ -84,32 +84,41 @@ struct ContentView: View {
                      }
                   } else {
                      incorrectGuess = true
-                     streak = 0
-                     
                   }
                }
+            
+            // TODO: Part 1b - Submit Guess Button.
+            Button("Submit Guess") {
+               if (user_guess.lowercased() == dogBreed.lowercased()) {
                   
-                  // TODO: Part 1b - Submit Guess Button.
-                  Button("Submit Guess") {
-                     if (user_guess.lowercased() == dogBreed.lowercased()) {
-                        
-                        Task {
-                           // Hint: You should be fetching a new doggy here!
-                           let doggy = await fetchDoggy()
-                           imageURL = doggy.message
-                           dogBreed = getDogName(imageURL: imageURL)
-                           user_guess = ""
-                           streak += 1
-                           if (streak > best_streak) {
-                              best_streak = streak
-                           }
-                        }
-                     } else {
-                        incorrectGuess = true
-                        streak = 0
-                        
+                  Task {
+                     // Hint: You should be fetching a new doggy here!
+                     let doggy = await fetchDoggy()
+                     imageURL = doggy.message
+                     dogBreed = getDogName(imageURL: imageURL)
+                     user_guess = ""
+                     streak += 1
+                     if (streak > best_streak) {
+                        best_streak = streak
                      }
-                  }.padding()
+                  }
+               } else {
+                  incorrectGuess = true
+               }
+            }.padding().alert("Wrong!", isPresented: $incorrectGuess) {
+               Button("Play Again", role: .cancel) {
+                  // Code here will execute after dismissing alert.
+                  Task {
+                     let doggy = await fetchDoggy()
+                     imageURL = doggy.message
+                     dogBreed = getDogName(imageURL: imageURL)
+                     user_guess = ""
+                     streak = 0
+                  }
+               }
+            } message: {
+               Text("It was " + dogBreed + "!\nYour streak was: " + String(streak))
+            }
             // TODO: Part 3b - Guess submission logic in Button. Hint: Should be exact same as TextField.onSubmit{ }.
             
             
@@ -119,7 +128,7 @@ struct ContentView: View {
             Spacer()
             
             // Answer for debugging/testing purposes.
-            Text("\(dogBreed)")
+            //Text("\(dogBreed)")
          }
          .task {
             // TODO: Part 3a - Fetch a doggy upon loading the app.
