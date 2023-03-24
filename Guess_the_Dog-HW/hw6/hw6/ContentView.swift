@@ -35,18 +35,18 @@ struct ContentView: View {
                Text("Guess the 🐶!").font(.largeTitle).padding()
                 HStack {
                     // TODO: Part 1b - Streak Text.
-                   Text("Streak: ").foregroundColor(Color.white)
+                   Text("Streak: " + String(streak)).foregroundColor(Color.white)
                     Spacer()
                     
                     // TODO: Part 1b - Best Streak Text.
-                   Text("Best Streak: ").foregroundColor(Color.white)
+                   Text("Best Streak: " + String(best_streak)).foregroundColor(Color.white)
                 }
                 .padding(.horizontal, 40)
                 .padding(.bottom, 60)
                 
                 // TODO: PART 3a - Replace the hardcoded string URL with the imageURL.
                 // Ansyncronously loads an image from the URL.
-                AsyncImage(url: URL(string: "https://images.dog.ceo/breeds/papillon/n02086910_2909.jpg")) { phase in
+                AsyncImage(url: URL(string: imageURL)) { phase in
                     if let image = phase.image {
                         image
                             .resizable()
@@ -60,7 +60,7 @@ struct ContentView: View {
                 .frame(width: 256, height: 256)
                 
                 // TODO: PART 1b - Display the generated hint.
-               Text(generateHint(input:getDogName(imageURL: "https://images.dog.ceo/breeds/papillon/n02086910_2909.jpg"))).padding()
+               Text(generateHint(input:dogBreed)).padding()
                 
                 TextField("", text: $user_guess)
                     .disableAutocorrection(true)
@@ -69,14 +69,17 @@ struct ContentView: View {
                     .padding(.horizontal, 50)
                     .onSubmit {
                         // TODO: Part 3b - Guess submission logic.
-                        if (true) {
+                       if (user_guess.lowercased() == dogBreed.lowercased()) {
                             
                             Task {
                                 // Hint: You should be fetching a new doggy here!
-                               
+                               let doggy = await fetchDoggy()
+                               imageURL = imageURL
+                               dogBreed = getDogName(imageURL: imageURL)
+                              
                             }
                         } else {
-                            
+                            incorrectGuess = true
                         }
                         
                     }
@@ -85,6 +88,27 @@ struct ContentView: View {
                Button("Submit Guess") {
                }.padding()
                 // TODO: Part 3b - Guess submission logic in Button. Hint: Should be exact same as TextField.onSubmit{ }.
+               TextField("", text: $user_guess)
+                   .disableAutocorrection(true)
+                   .multilineTextAlignment(.center)
+                   .textFieldStyle(.roundedBorder)
+                   .padding(.horizontal, 50)
+                   .onSubmit {
+                       // TODO: Part 3b - Guess submission logic.
+                      if (user_guess.lowercased() == dogBreed.lowercased()) {
+                           
+                           Task {
+                               // Hint: You should be fetching a new doggy here!
+                              let doggy = await fetchDoggy()
+                              imageURL = imageURL
+                              dogBreed = getDogName(imageURL: imageURL)
+                             
+                           }
+                       } else {
+                           incorrectGuess = true
+                       }
+                       
+                   }
                 // TODO: Part 3c - Incorrect guess alert (attached to submit guess button).
                 
                 Spacer()
@@ -95,6 +119,9 @@ struct ContentView: View {
             }
             .task {
                 // TODO: Part 3a - Fetch a doggy upon loading the app.
+               let doggy = await fetchDoggy()
+               imageURL = doggy.message
+               dogBreed = getDogName(imageURL: imageURL)
             }
         }
     }
