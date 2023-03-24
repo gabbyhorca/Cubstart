@@ -86,29 +86,22 @@ struct ContentView: View {
                 
                 // TODO: Part 1b - Submit Guess Button.
                Button("Submit Guess") {
+                  if (user_guess.lowercased() == dogBreed.lowercased()) {
+                       
+                       Task {
+                           // Hint: You should be fetching a new doggy here!
+                          let doggy = await fetchDoggy()
+                          imageURL = imageURL
+                          dogBreed = getDogName(imageURL: imageURL)
+                         
+                       }
+                   } else {
+                       incorrectGuess = true
+                   }
                }.padding()
                 // TODO: Part 3b - Guess submission logic in Button. Hint: Should be exact same as TextField.onSubmit{ }.
-               TextField("", text: $user_guess)
-                   .disableAutocorrection(true)
-                   .multilineTextAlignment(.center)
-                   .textFieldStyle(.roundedBorder)
-                   .padding(.horizontal, 50)
-                   .onSubmit {
-                       // TODO: Part 3b - Guess submission logic.
-                      if (user_guess.lowercased() == dogBreed.lowercased()) {
-                           
-                           Task {
-                               // Hint: You should be fetching a new doggy here!
-                              let doggy = await fetchDoggy()
-                              imageURL = imageURL
-                              dogBreed = getDogName(imageURL: imageURL)
-                             
-                           }
-                       } else {
-                           incorrectGuess = true
-                       }
-                       
-                   }
+      
+   
                 // TODO: Part 3c - Incorrect guess alert (attached to submit guess button).
                 
                 Spacer()
