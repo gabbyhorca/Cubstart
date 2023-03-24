@@ -76,10 +76,14 @@ struct ContentView: View {
                                let doggy = await fetchDoggy()
                                imageURL = imageURL
                                dogBreed = getDogName(imageURL: imageURL)
-                              
+                               streak += 1
+                               if (streak > best_streak) {
+                                  best_streak = streak
+                               }
                             }
                         } else {
                             incorrectGuess = true
+                           streak = 0
                         }
                         
                     }
@@ -94,10 +98,14 @@ struct ContentView: View {
                           imageURL = doggy.message
                           dogBreed = getDogName(imageURL: imageURL)
                           user_guess = ""
-                         
+                          streak += 1
+                          if (streak > best_streak) {
+                             best_streak = streak
+                          }
                        }
                    } else {
                        incorrectGuess = true
+                      streak = 0
                    }
                }.padding()
                 // TODO: Part 3b - Guess submission logic in Button. Hint: Should be exact same as TextField.onSubmit{ }.
