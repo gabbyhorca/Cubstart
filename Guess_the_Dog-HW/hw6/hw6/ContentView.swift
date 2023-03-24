@@ -91,8 +91,9 @@ struct ContentView: View {
                        Task {
                            // Hint: You should be fetching a new doggy here!
                           let doggy = await fetchDoggy()
-                          imageURL = imageURL
+                          imageURL = doggy.message
                           dogBreed = getDogName(imageURL: imageURL)
+                          user_guess = ""
                          
                        }
                    } else {
@@ -115,6 +116,7 @@ struct ContentView: View {
                let doggy = await fetchDoggy()
                imageURL = doggy.message
                dogBreed = getDogName(imageURL: imageURL)
+               user_guess = ""
             }
         }
     }
