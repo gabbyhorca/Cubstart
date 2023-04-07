@@ -128,7 +128,7 @@ struct ContentView: View {
             Spacer()
             
             // Answer for debugging/testing purposes.
-            //Text("\(dogBreed)")
+            Text("\(dogBreed)")
          }
          .task {
             // TODO: Part 3a - Fetch a doggy upon loading the app.
