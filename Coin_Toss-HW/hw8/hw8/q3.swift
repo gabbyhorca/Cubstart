@@ -28,11 +28,11 @@ struct q3: View {
                     face = ""
                     
                     // TODO: Implement two explicit animations below.
-                   withAnimation(.easeIn(duration: 1)) {
+                   withAnimation(.easeOut(duration: 1)) {
                        offset_y = -300.0
                        rotation += 1080.0
                    }
-                   withAnimation(.easeOut(duration: 1).delay(1)) {
+                   withAnimation(.easeIn(duration: 1).delay(1)) {
                        offset_y = 0.0
                        rotation += 1080.0
                    }
