@@ -11,7 +11,7 @@ import SwiftUI
 struct hw8App: App {
     var body: some Scene {
         WindowGroup {
-            q1()
+            q2()
         }
     }
 }

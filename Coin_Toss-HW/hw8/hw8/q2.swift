@@ -30,6 +30,19 @@ struct q2: View {
                     }
                     
                     // TODO: Implement the three other explicit animations below.
+                   // Moves square from bottom-left -> top-left
+                   withAnimation(.linear(duration: 0.5).delay(0.5)) {
+                       offset_y = -300
+                       rotation += 180.0
+                   }
+                   withAnimation(.linear(duration: 0.5).delay(1)) {
+                       offset_x = 90.0
+                       rotation += 180.0
+                   }
+                   withAnimation(.linear(duration: 0.5).delay(1.5)) {
+                       offset_y = 300.0
+                       rotation += 180.0
+                   }
                 }
         }
     }
